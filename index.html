@@ -114,9 +114,44 @@ for i in [30, 30*2, 30*3, 30*5, 30*7, 30*9, 30*12, 30*16, 30*20, 30*26, 30*32, 3
                 for i in deck:
                     print(i)
                 running = false
-                
+
     if not running:
         break
             </p>
+
+    <p>To prepare for battles, define turns (int), rerolls (int), score (int) and roll (list) at the top, under when you initialize your deck.</p>
+    <p class="code">turns = 4
+    rerolls = 3
+    roll = []
+    score = 0</p>
+    <p>Now for the main event: The battle code!</p>
+    <p class="code">    while score < battles[0].goal:
+        for i in deck:
+            roll.append(i.roll())
+        print(f"You have {rerolls} rerolls and {turns} turns left. Select the die you'd like to reroll...")
+        print(f"Your current roll is: {roll} (Total {sum(roll)})\nYour current deck is:")
+        for i in deck:
+            print(i)
+
+        userinput = input("Please enter a die number to reroll it or input 0 to submit this roll: ")
+
+        try:
+            if int(userinput) == 0:
+                score += sum(roll)
+                turns -= 1
+            else:
+                temp = deck[int(userinput)-1].roll()
+                roll[int(userinput)-1] = temp
+                rerolls -= 1
+
+        except TypeError or ValueError:
+            print("Incorrect input; try again.")
+            
+        if turns == 0 and score < battles[0].goal:
+            print("Game over...")
+            running = False
+            break
+    if not running:
+        break</p>
 </body>
 </html>
