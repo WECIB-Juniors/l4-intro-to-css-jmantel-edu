@@ -7,7 +7,7 @@
     <link rel="stylesheet" href=".\styles.css">
 </head>
 <body>
-    <h1>How to create a fun dice game in Python</h1>
+    <h1>How to create a fun dice game in Python (Pt.1)</h1>
     <h2>Jordan Mantel</h2>
 
     <p>In this Python tutorial, we'll be making a fun dice game, similar to fun roguelike deckbuilder games that have been popping up. We won't be using anything other than the terminal this time, so no need to know a display library like Pygame or Raylib. Here are the steps to follow:</p>
@@ -36,11 +36,33 @@ while running:
     # Get Rewards & Upgrade Chance 
     # Shop Scene 
     pass 
-</p>
-<p>This is basically it for setup, so let's move onto making the Die object.</p>
-<h1>Step 2: Creating the Die Object</h1>
-<h2>Creating a die that can be rolled.</h2>
-<p>Create a new script in your editor called "die.py". The files open in your editor should look something like this:</p>
-<img src="editor_step_2.png">
+    </p>
+    <p>This is basically it for setup, so let's move onto making the Die object.</p>
+    <h1>Step 2: Creating the Die Object</h1>
+    <h2>Creating a die that can be rolled.</h2>
+    <p>Create a new script in your editor called "die.py". The files open in your editor should look something like this:</p>
+    <img src="editor_step_2.png" alt="You should have a file called main.py and die.py">
+    <p>Anyways, let's write the Die class. In die.py, import random once more.</p>
+    <p class="code">import random</p>
+    <p>Initialize the class Die with the following variables</p>
+    <p class="code">class Die(object):
+        def __init__(self, minimum: int, maximum: int, mult: int, roll_count: int):
+            self.minimum = minimum # The minimum value
+            self.maximum = maximum # The maximum value
+            self.mult = mult # The multiplier applied after rolling
+            self.roll_count = roll_count # The amount of times to roll the die</p>
+    <p>Now, let's create a __str__ method. A __str__ method will display a customized str output when it's printed with print(). Write inside the Die class:</p>
+    <p class="code">    def __str__(self):
+            return f"Min {self.minimum} | Max {self.maximum} | Mult {self.mult} | Roll {self.roll_count} times"</p>
+    <p>Time for the fun part: Rolling the die! Now it's time to create a roll() method using our previous initialized variables.</p>
+    <p class="code">    def roll(self):
+        return sum([random.randint(self.minimum, self.maximum) for i in range(self.roll_count)]) * self.mult</p>
+    <p>To test if both these functions are working, you can add these lines to the end of your die.py file and run it.</p>
+    <p class="code">my_die = Die(1, 6, 1, 3)
+print(my_die)
+print(my_die.roll())</p>
+    <p>If you used my exact code, your first line should look like</p>
+    <p class="code">Min 1 | Max 6 | Mult 1 | Roll 3 times</p>
+    <p>and your second line should be a random number. If it's successful, remove these lines and save.</p>
 </body>
 </html>
