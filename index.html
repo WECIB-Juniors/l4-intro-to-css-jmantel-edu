@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href=".\styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>How to create a fun dice game in Python (Pt.1)</h1>
@@ -38,6 +42,7 @@ while running:
     pass 
     </p>
     <p>This is basically it for setup, so let's move onto making the Die object.</p>
+
     <h1>Step 2: Creating the Die Object</h1>
     <h2>Creating a die that can be rolled.</h2>
     <p>Create a new script in your editor called "die.py". The files open in your editor should look something like this:</p>
@@ -64,5 +69,26 @@ print(my_die.roll())</p>
     <p>If you used my exact code, your first line should look like</p>
     <p class="code">Min 1 | Max 6 | Mult 1 | Roll 3 times</p>
     <p>and your second line should be a random number. If it's successful, remove these lines and save.</p>
+
+    <p>Now jump back to main.py and import your Die class under your random import.</p>
+    <p class="code">from die import Die</p>
+    <p>Change your deck initializer to initialize with five random dice.</p>
+    <p class="code">deck = [Die(1, 6, 1, 1) for i in range(5)] # Initial deck is five random regular dice</p>
+    <p>That's all for the Die class, so let's move on to making everything related to Battles.</p>
+    
+    <h1>Step 3: Creating the Battles</h1>
+    <h2>Creating the scene where you use your dice to earn points.</h2>
+
+    <p>Once again, create a new file called battle.py. Your files should now look like this:</p>
+    <img src="editor_step_3.png" alt="Your files should be main.py, die.py, and battle.py.">
+    <p>Go to battle.py and do a similar initialization of class to the Die class, with some new variables. No importing Random this time.</p>
+    <p class="code">class Battle(object):
+    def __init__(self, battle_name, goal):
+        self.battle_name = battle_name
+        self.goal = goal
+        
+    def __str__(self):
+        return f"{self.battle_name}: Goal {self.goal}"</p>
+
 </body>
 </html>
