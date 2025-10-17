@@ -84,11 +84,39 @@ print(my_die.roll())</p>
     <p>Go to battle.py and do a similar initialization of class to the Die class, with some new variables. No importing Random this time.</p>
     <p class="code">class Battle(object):
     def __init__(self, battle_name, goal):
-        self.battle_name = battle_name
-        self.goal = goal
+        self.battle_name = battle_name # The name of the battle.
+        self.goal = goal # The goal number to reach with all your rolls.
         
     def __str__(self):
         return f"{self.battle_name}: Goal {self.goal}"</p>
 
+    <p>Now let's go back to main.py and write code to create the list of battles. Of course, import battle at the top of the file.</p>
+    <p class="code">from battle import Battle</p>
+    <p class="code">battles = []
+
+for i in [30, 30*2, 30*3, 30*5, 30*7, 30*9, 30*12, 30*16, 30*20, 30*26, 30*32, 30*38, 30*50, 30*62, 30*74, 30*100]:
+    battles.append(Battle("Battle", i))</p>
+
+    <p>Go to the running loop. Remove the "Next Battles Preview" Comment and write this code.</p>
+    <p class="code">while running:
+    try:
+        for i in range(3):
+            print(battles[i-1])
+    except IndexError: # Less than 3 battles left
+        try:
+            print(battles[0:1])
+        except IndexError: # Less than 2 battles left
+            try:
+                print(battles[0])
+            except IndexError: # No more battles left
+                print("Congratulations! You've won all battles!")
+                print("Your deck:")
+                for i in deck:
+                    print(i)
+                running = false
+                
+    if not running:
+        break
+            </p>
 </body>
 </html>
